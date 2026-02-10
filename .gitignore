@@ -1,0 +1,17 @@
+# Python
+__pycache__/
+*.pyc
+
+# Virtual environment (if any)
+venv/
+.env/
+
+# Database
+database.db
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# DB Browser project file
+*.sqbpro

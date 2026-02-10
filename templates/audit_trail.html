@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Audit Logs - LegacyVault</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/variables.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/dashboard_layout.css') }}">
+    <style>
+        .audit-table-container {
+            background: white;
+            border-radius: var(--border-radius-lg);
+            border: 1px solid var(--border-color);
+            overflow: hidden;
+            margin-top: 2rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.02);
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            text-align: left;
+        }
+
+        th {
+            background: var(--secondary-gray);
+            padding: 1rem 1.5rem;
+            font-family: var(--font-body);
+            font-weight: 600;
+            color: var(--primary-blue);
+            border-bottom: 2px solid var(--border-color);
+        }
+
+        td {
+            padding: 1rem 1.5rem;
+            border-bottom: 1px solid var(--border-color);
+            font-size: 0.9rem;
+            color: var(--text-dark);
+        }
+
+        tr:last-child td {
+            border-bottom: none;
+        }
+
+        tr:hover {
+            background-color: #fcfcfc;
+        }
+
+        .status-pill {
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+
+        .status-success {
+            background: rgba(40, 167, 69, 0.1);
+            color: var(--success-green);
+        }
+
+        .status-failure {
+            background: rgba(220, 53, 69, 0.1);
+            color: var(--danger-red);
+        }
+
+        .action-icon {
+            margin-right: 8px;
+        }
+
+        .details-text {
+            color: var(--text-muted);
+            font-style: italic;
+        }
+    </style>
+</head>
+
+<body>
+    <nav class="navbar">
+        <div class="navbar-brand">
+            <h1>LegacyVault</h1>
+            <span>Security Audit Trail</span>
+        </div>
+        <div class="user-menu">
+            <a href="/" style="color: white; text-decoration: none;">&larr; Back to Dashboard</a>
+        </div>
+    </nav>
+
+    <div class="dashboard-header" style="padding: 0.8rem 0; margin-bottom: 1rem;">
+        <div class="container">
+            <div class="dashboard-title">
+                <h2 style="font-size: 1.4rem; margin-bottom: 0.2rem;">Security Audit Logs</h2>
+                <p class="dashboard-subtitle" style="color: #2c3e50; font-weight: 500; font-size: 0.9rem;">A record of
+                    all
+                    security-critical actions executed within
+                    the system.</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="audit-table-container">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Timestamp</th>
+                        <th>User</th>
+                        <th>Action</th>
+                        <th>Object</th>
+                        <th>Status</th>
+                        <th>Details</th>
+                        <th>Source IP</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for log in logs %}
+                    <tr>
+                        <td style="white-space: nowrap; font-weight: 500;">{{ log.timestamp }}</td>
+                        <td>
+                            <div style="display: flex; flex-direction: column;">
+                                <strong>{{ log.username }}</strong>
+                                <span style="font-size: 0.75rem; color: var(--text-muted);">{{ log.role }}</span>
+                            </div>
+                        </td>
+                        <td>
+                            <span class="action-bold">
+                                {% if log.action == 'Login' %}{% elif log.action == 'Registration' %}📝{% elif
+                                log.action == 'Access' %}{% elif log.action == 'Create' %}✍️{% elif log.action ==
+                                'Authorize Release' %}{% else %}⚙️{% endif %}
+                                {{ log.action }}
+                            </span>
+                        </td>
+                        <td>{{ log.resource }}</td>
+                        <td>
+                            <span class="status-pill status-{{ 'success' if log.status == 'Success' else 'failure' }}">
+                                {{ log.status }}
+                            </span>
+                        </td>
+                        <td class="details-text">{{ log.details }}</td>
+                        <td style="font-family: monospace; color: var(--text-muted);">{{ log.ip }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</body>
+
+</html>

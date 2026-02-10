@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Account - LegacyVault</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/variables.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/auth.css') }}">
+</head>
+
+<body>
+    <div class="auth-container">
+        <!-- Left Panel -->
+        <div class="auth-left">
+            <div class="brand-header">
+                <h1>LegacyVault<br><span>Secure Digital Will Management</span></h1>
+            </div>
+
+            <div class="hero-text">
+
+                <div style="background: rgba(255,255,255,0.1); padding: 1.2rem; border-radius: 8px; margin-top: 1rem;">
+                    <h4 style="color: var(--white); margin: 0 0 0.8rem 0; font-size: 1.2rem;">Choose Your Role</h4>
+                    <p style="font-size: 0.9rem; margin-bottom: 0.5rem;"><span
+                            style="color: var(--primary-gold);">Owner:</span> Create and manage your digital will</p>
+                    <p style="font-size: 0.9rem; margin-bottom: 0.5rem;"><span
+                            style="color: var(--primary-gold);">Executor:</span> Authorized to release wills</p>
+                    <p style="font-size: 0.9rem; margin-bottom: 0;"><span
+                            style="color: var(--primary-gold);">Beneficiary:</span> Receive designated inheritance</p>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- Right Panel -->
+        <div class="auth-right">
+            <div class="auth-box" style="max-width: 500px;"> <!-- Slightly wider for register form -->
+                <h2>Create Account</h2>
+                <p class="auth-subtitle">Begin your secure will management journey</p>
+
+                <form action="/register" method="POST">
+                    <div class="form-group">
+                        <label>Email Address</label>
+                        <input type="email" name="email" class="form-control" placeholder="you@example.com" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Username</label>
+                        <input type="text" name="username" class="form-control" placeholder="Choose a username"
+                            required>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Role</label>
+                        <select name="role" class="form-control">
+                            <option value="Owner">Testament Owner</option>
+                            <option value="Executor">Executor</option>
+                            <option value="Beneficiary">Beneficiary</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Password</label>
+                        <input type="password" name="password" class="form-control" placeholder="••••••••" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label style="font-weight: normal; font-size: 0.85rem;">
+                            <input type="checkbox" required> I agree to the <a href="#">Terms of Service</a> and <a
+                                href="#">Privacy Policy</a>
+                        </label>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary btn-block">Create Account &rarr;</button>
+                </form>
+
+                <div class="auth-footer">
+                    Already have an account? <a href="/login">Sign In</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

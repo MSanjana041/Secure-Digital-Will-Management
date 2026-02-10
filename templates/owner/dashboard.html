@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Owner Portal - LegacyVault</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/variables.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/dashboard_layout.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/dashboard_cards.css') }}">
+</head>
+
+<body>
+    <nav class="navbar">
+        <div class="navbar-brand">
+            <div style="background: var(--primary-gold); padding: 5px; border-radius: 4px;">🛡️</div>
+            <div>
+                <h1>LegacyVault</h1>
+                <span>Secure Digital Will Management</span>
+            </div>
+        </div>
+        <div class="user-menu">
+            <span class="role-badge">Owner</span>
+            <div class="profile-dropdown">
+                <div
+                    style="width: 32px; height: 32px; background: var(--primary-gold); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: var(--primary-blue);">
+                    <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24">
+                        <path
+                            d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z" />
+                    </svg>
+                </div>
+                <span class="profile-name">{{ session.get('username', 'Testator') }}</span>
+                <div class="dropdown-content">
+                    <a href="/logout">Logout</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <div class="dashboard-header">
+        <div class="container">
+            <div class="dashboard-title">
+                <h2>Owner Portal</h2>
+                <p class="dashboard-subtitle">Securely draft, manage, and assign your digital will and assets.</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <!-- Stats Grid -->
+        <div class="stats-grid" style="grid-template-columns: repeat(3, 1fr);">
+            <div class="stat-card">
+                <span class="stat-label">Testaments Created</span>
+                <span class="stat-value">{{ testaments_count }}</span>
+            </div>
+            <div class="stat-card">
+                <span class="stat-label">Beneficiaries</span>
+                <span class="stat-value">{{ beneficiaries_count }}</span>
+            </div>
+            <div class="stat-card">
+                <span class="stat-label">Last Updated</span>
+                <span class="stat-value" style="font-size: 1.25rem; font-weight: 500;">{{ last_updated }}</span>
+            </div>
+        </div>
+
+        <!-- Actions Grid -->
+        <h3 style="margin-bottom: 1.5rem; color: var(--primary-blue);">Quick Actions</h3>
+        <div class="action-grid" style="grid-template-columns: repeat(2, 1fr);">
+            <!-- Create Will -->
+            <a href="/create-will" class="action-card">
+                <div class="card-icon" style="background: rgba(197, 160, 89, 0.1); color: var(--primary-gold);">✍️</div>
+                <div class="card-content">
+                    <h3>Draft New Will <span class="status-badge write-access">Primary</span></h3>
+                    <p>Create a new digital testament, encrypt it, and sign it securely.</p>
+                </div>
+            </a>
+
+            <!-- View Will -->
+            <a href="/view-will" class="action-card">
+                <div class="card-icon">📄</div>
+                <div class="card-content">
+                    <h3>View My Will <span class="status-badge available">Active</span></h3>
+                    <p>Review your encrypted testament and verify digital signature integrity.</p>
+                </div>
+            </a>
+
+            <!-- View Release Authorization (Read Only) -->
+            <a href="#" class="action-card">
+                <div class="card-icon">🔒</div>
+                <div class="card-content">
+                    <h3>Release Authorization <span class="status-badge read-only">Read Only</span></h3>
+                    <p>View the current release status and executor authorization settings.</p>
+                </div>
+            </a>
+
+            <!-- View Audit Logs (Read Only) -->
+            <a href="/audit-trail" class="action-card">
+                <div class="card-icon">🛡️</div>
+                <div class="card-content">
+                    <h3>Audit Logs <span class="status-badge read-only">Read Only</span></h3>
+                    <p>Monitor access logs and integrity checks for your digital will.</p>
+                </div>
+            </a>
+        </div>
+    </div>
+</body>
+
+</html>

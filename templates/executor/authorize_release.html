@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Authorize Release - LegacyVault</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/variables.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/dashboard_layout.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/auth.css') }}">
+</head>
+
+<body>
+    <nav class="navbar">
+        <div class="navbar-brand">
+            <h1>LegacyVault</h1>
+        </div>
+        <div class="user-menu">
+            <a href="/executor/dashboard" style="color: white; text-decoration: none;">&larr; Back to Dashboard</a>
+        </div>
+    </nav>
+
+    <div class="auth-container" style="justify-content: center; padding: 2rem;">
+        <div class="auth-box" style="width: 100%; max-width: 800px; text-align: center;">
+            <div style="font-size: 3rem; margin-bottom: 1rem;">⚖️</div>
+            <h2>Authorize Digital Wills</h2>
+            <p class="auth-subtitle">Select a testament document to authorize its release. This action will grant
+                designated beneficiaries access to the decrypted documents.</p>
+
+            <div style="margin: 2rem 0; overflow-x: auto;">
+                <table
+                    style="width: 100%; border-collapse: collapse; text-align: left; background: rgba(255,255,255,0.05); border-radius: 8px;">
+                    <thead>
+                        <tr style="border-bottom: 1px solid rgba(197, 160, 89, 0.3);">
+                            <th style="padding: 1rem; color: var(--primary-gold);">ID</th>
+                            <th style="padding: 1rem; color: var(--primary-gold);">Owner</th>
+                            <th style="padding: 1rem; color: var(--primary-gold);">Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for will in wills %}
+                        <tr style="border-bottom: 1px solid rgba(255,255,255,0.05);">
+                            <td style="padding: 1rem; color: var(--text-dark);">#{{ will.id }}</td>
+                            <td style="padding: 1rem; color: var(--text-dark);">{{ will.owner }}</td>
+                            <td style="padding: 1rem;">
+                                <a href="/release-will?id={{ will.id }}" class="btn btn-primary"
+                                    style="padding: 0.5rem 1rem; font-size: 0.85rem; background-color: var(--danger-red); border-color: var(--danger-red); text-decoration: none; border-radius: 4px; color: white;">
+                                    Authorize Release
+                                </a>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+
+            <a href="/executor/dashboard" style="display: block; margin-top: 1rem; color: var(--text-muted);">Back to
+                Dashboard</a>
+        </div>
+    </div>
+</body>
+
+</html>

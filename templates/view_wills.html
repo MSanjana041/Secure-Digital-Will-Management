@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>View Testaments - LegacyVault</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/variables.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/dashboard_layout.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/dashboard_cards.css') }}">
+</head>
+
+<body>
+    <nav class="navbar">
+        <div class="navbar-brand">
+            <div style="background: var(--primary-gold); padding: 5px; border-radius: 4px;">🛡️</div>
+            <div>
+                <h1>LegacyVault</h1>
+                <span>Secure Digital Will Management</span>
+            </div>
+        </div>
+        <div class="user-menu">
+            <a href="/" style="color: white; text-decoration: none;">&larr; Back to Dashboard</a>
+        </div>
+    </nav>
+
+    <div class="dashboard-header">
+        <div class="container">
+            <div class="dashboard-title">
+                <h2>Decrypted Testaments</h2>
+                <p class="dashboard-subtitle">Secure access to digital wills you are authorized to view.</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        {% if wills %}
+        {% for will in wills %}
+        <div
+            style="background: var(--white); border: 1px solid var(--border-color); border-radius: 8px; padding: 2rem; margin-bottom: 2rem;">
+            <h3 style="margin-top: 0; color: var(--primary-blue);">Testament ID: #{{ will.id }}</h3>
+            <div style="display: flex; gap: 1rem; margin-bottom: 1rem;">
+                <span class="status-badge available"
+                    style="background: rgba(197, 160, 89, 0.1); color: var(--primary-gold);">Signed by: {{ will.signer
+                    }}</span>
+                {% if will.verified %}
+                <span class="status-badge"
+                    style="background: rgba(40, 167, 69, 0.1); color: var(--success-green);">Signature Verified</span>
+                {% else %}
+                <span class="status-badge"
+                    style="background: rgba(220, 53, 69, 0.1); color: var(--danger-red);">Signature Invalid</span>
+                {% endif %}
+            </div>
+
+            <div
+                style="background: #fcfcfc; padding: 1.5rem; border: 1px solid var(--border-color); border-radius: 4px; font-family: 'Courier New', monospace; white-space: pre-wrap;">
+                {{ will.content }}</div>
+        </div>
+        {% endfor %}
+        {% else %}
+        <div
+            style="text-align: center; padding: 4rem; color: var(--text-muted); background: var(--white); border-radius: 8px; border: 1px solid var(--border-color);">
+            <h3>No Accessible Testaments Found</h3>
+            <p>There are no wills available for you to view at this time.</p>
+        </div>
+        {% endif %}
+    </div>
+</body>
+
+</html>

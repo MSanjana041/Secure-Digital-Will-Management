@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Draft New Will - LegacyVault</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/variables.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/dashboard_layout.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/auth.css') }}">
+    <style>
+        .will-editor {
+            width: 100%;
+            min-height: 400px;
+            padding: 1.5rem;
+            border: 1px solid var(--border-color);
+            border-radius: var(--border-radius-md);
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 1rem;
+            line-height: 1.6;
+            resize: vertical;
+            margin-bottom: 2rem;
+            background: #fcfcfc;
+        }
+
+        .will-editor:focus {
+            outline: none;
+            border-color: var(--primary-blue);
+            box-shadow: 0 0 0 3px rgba(10, 37, 64, 0.1);
+        }
+    </style>
+</head>
+
+<body>
+    <nav class="navbar">
+        <div class="navbar-brand">
+            <div style="background: var(--primary-gold); padding: 5px; border-radius: 4px;">🛡️</div>
+            <div>
+                <h1>LegacyVault</h1>
+                <span>Secure Digital Will Management</span>
+            </div>
+        </div>
+        <div class="user-menu">
+            <a href="/owner/dashboard" style="color: white; text-decoration: none;">&larr; Back to Dashboard</a>
+        </div>
+    </nav>
+
+    <div class="container" style="max-width: 900px; margin-top: 3rem;">
+        <div class="dashboard-header" style="background: none; border: none; padding: 0; margin-bottom: 2rem;">
+            <div class="dashboard-title">
+                <h2>Draft New Testament</h2>
+                <p class="dashboard-subtitle">Compose your digital will below. It will be encrypted with AES-256 and
+                    signed with your RSA private key upon submission.</p>
+            </div>
+        </div>
+
+        <form method="POST"
+            style="background: var(--white); padding: 2rem; border-radius: 8px; border: 1px solid var(--border-color); box-shadow: 0 4px 6px rgba(0,0,0,0.02);">
+            <div class="form-group">
+                <label
+                    style="display: block; margin-bottom: 0.5rem; font-weight: 600; color: var(--primary-blue);">Legal
+                    Testament Content</label>
+                <textarea name="will" class="will-editor"
+                    placeholder="I, [Name], of [City, Country], being of sound mind and memory, do hereby declare this to be my last will and testament..."
+                    required></textarea>
+            </div>
+
+            <div
+                style="background: rgba(197, 160, 89, 0.1); padding: 1rem; border-radius: 4px; margin-bottom: 2rem; display: flex; gap: 1rem; align-items: flex-start;">
+                <div style="color: var(--primary-gold); font-size: 1.2rem;">🔒</div>
+                <p style="margin: 0; font-size: 0.9rem; color: var(--text-muted);">
+                    <strong>Security Note:</strong> Your document will be encrypted immediately. Only the designated
+                    executor can authorize access to this document after verified conditions are met.
+                </p>
+            </div>
+
+            <button type="submit" class="btn btn-primary" style="padding: 1rem 2rem; font-size: 1.1rem;">
+                Encrypt & Store Will
+            </button>
+        </form>
+    </div>
+</body>
+
+</html>

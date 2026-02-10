@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Beneficiary Portal - LegacyVault</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/variables.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/dashboard_layout.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/dashboard_cards.css') }}">
+</head>
+
+<body>
+    <nav class="navbar">
+        <div class="navbar-brand">
+            <div style="background: var(--primary-gold); padding: 5px; border-radius: 4px;">🛡️</div>
+            <div>
+                <h1>LegacyVault</h1>
+                <span>Secure Digital Will Management</span>
+            </div>
+        </div>
+        <div class="user-menu">
+            <span class="role-badge">Beneficiary</span>
+            <div class="profile-dropdown">
+                <div
+                    style="width: 32px; height: 32px; background: var(--primary-gold); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: var(--primary-blue);">
+                    <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24">
+                        <path
+                            d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z" />
+                    </svg>
+                </div>
+                <span class="profile-name">{{ session.get('username', 'User') }}</span>
+                <div class="dropdown-content">
+                    <a href="/logout">Logout</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <div class="dashboard-header">
+        <div class="container">
+            <div class="dashboard-title">
+                <h2>Beneficiary Portal</h2>
+                <p class="dashboard-subtitle">Access your designated inheritance documents when authorized by the will
+                    executor.</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <!-- Status Banner -->
+        <div
+            style="background: #cbd3da; border-radius: 8px; padding: 1.2rem; display: flex; align-items: center; gap: 1rem; margin-bottom: 1.5rem; border: 1px solid #adb5bd;">
+            <div
+                style="background: #a8b2bb; padding: 0.5rem; border-radius: 50%; width: 24px; height: 24px; display: flex; justify-content: center; align-items: center; color: #1a2b4b;">
+                🛡️</div>
+            <div>
+                <strong style="color: #1a2b4b;">Will Status: {{ 'Released' if is_released else 'Pending Release'
+                    }}</strong>
+                <p style="margin: 0; font-size: 0.9rem; color: #222f3e; font-weight: 500;">
+                    {% if is_released %}
+                    The will documents have been released. You may now view the testament.
+                    {% else %}
+                    The testament has not yet been released. You will be notified when access is granted.
+                    {% endif %}
+                </p>
+            </div>
+        </div>
+
+        <!-- Actions Grid -->
+        <div class="action-grid" style="grid-template-columns: repeat(3, 1fr);">
+            <!-- View Testament -->
+            {% if is_released %}
+            <a href="/view-will" class="action-card">
+                <div class="card-icon">📄</div>
+                <div class="card-content">
+                    <h3>View Testament <span class="status-badge available">Available</span></h3>
+                    <p>Access the digital will and inheritance documents designated to you.</p>
+                </div>
+            </a>
+            {% else %}
+            <div class="action-card" style="opacity: 0.7; cursor: not-allowed;">
+                <div class="card-icon">📄</div>
+                <div class="card-content">
+                    <h3>View Testament <span class="status-badge read-only">Available After Release</span></h3>
+                    <p>Access the digital will and inheritance documents designated to you.</p>
+                </div>
+            </div>
+            {% endif %}
+
+            <!-- Release Authorization (No Access) -->
+            <div class="action-card" style="opacity: 0.7;">
+                <div class="card-icon">🔒</div>
+                <div class="card-content">
+                    <h3>Release Authorization <span class="status-badge no-access">No Access</span></h3>
+                    <p>View the authorization status and release conditions for the digital will.</p>
+                </div>
+            </div>
+
+            <!-- Audit Trail (No Access) -->
+            <div class="action-card" style="opacity: 0.7;">
+                <div class="card-icon">🔒</div>
+                <div class="card-content">
+                    <h3>Audit Trail <span class="status-badge no-access">No Access</span></h3>
+                    <p>Review the activity history and verification logs for the digital will.</p>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+</body>
+
+</html>

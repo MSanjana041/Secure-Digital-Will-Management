@@ -1,0 +1,138 @@
+.auth-container {
+    display: flex;
+    height: 100vh;
+    overflow: hidden;
+}
+
+.auth-left {
+    flex: 1.2;
+    background-color: var(--primary-blue);
+    color: var(--white);
+    padding: 2.5rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.auth-right {
+    flex: 1;
+    background-color: var(--white);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem;
+}
+
+.brand-header {
+    margin-bottom: 1rem;
+}
+
+.brand-header h1 {
+    font-size: 1.8rem;
+    color: var(--white);
+    line-height: 1.1;
+}
+
+.brand-header span {
+    color: var(--primary-gold);
+    display: block;
+}
+
+.feature-list {
+    list-style: none;
+    padding: 0;
+    margin-top: 1rem;
+}
+
+.feature-list li {
+    margin-bottom: 0.6rem;
+    display: flex;
+    align-items: center;
+    font-size: 1rem;
+}
+
+.feature-list li::before {
+    content: "✓";
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 24px;
+    height: 24px;
+    background-color: rgba(197, 160, 89, 0.2);
+    color: var(--primary-gold);
+    border-radius: 50%;
+    margin-right: 1rem;
+    font-size: 0.8rem;
+}
+
+.auth-box {
+    width: 100%;
+    max-width: 420px;
+    padding: 1.8rem;
+    border: 1px solid var(--border-color);
+    border-radius: var(--border-radius-lg);
+    background: var(--white);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.02);
+}
+
+.auth-box h2 {
+    text-align: center;
+    font-size: 1.5rem;
+    margin-bottom: 0.25rem;
+}
+
+.auth-subtitle {
+    text-align: center;
+    color: var(--text-muted);
+    margin-bottom: 1.2rem;
+    font-size: 0.85rem;
+}
+
+.form-group {
+    margin-bottom: 1.1rem;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+    font-size: 0.9rem;
+}
+
+.form-control {
+    width: 100%;
+    padding: 0.75rem;
+    border: 1px solid var(--border-color);
+    border-radius: var(--border-radius-sm);
+    font-family: var(--font-body);
+    font-size: 1rem;
+    box-sizing: border-box;
+}
+
+.form-control:focus {
+    outline: none;
+    border-color: var(--primary-gold);
+    box-shadow: 0 0 0 3px rgba(197, 160, 89, 0.1);
+}
+
+.form-options {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.5rem;
+    font-size: 0.9rem;
+}
+
+.btn-block {
+    display: block;
+    width: 100%;
+    text-align: center;
+    font-size: 1rem;
+}
+
+.auth-footer {
+    text-align: center;
+    margin-top: 1.5rem;
+    font-size: 0.9rem;
+    color: var(--text-muted);
+}

@@ -1,0 +1,120 @@
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.2rem;
+    margin-bottom: 1.5rem;
+}
+
+.stat-card {
+    background: var(--white);
+    padding: 1.2rem;
+    border-radius: var(--border-radius-md);
+    border: 1px solid var(--border-color);
+}
+
+.stat-label {
+    display: block;
+    color: var(--text-muted);
+    font-size: 0.9rem;
+    margin-bottom: 0.5rem;
+}
+
+.stat-value {
+    display: block;
+    font-size: 1.75rem;
+    font-weight: 600;
+    color: var(--primary-blue);
+    font-family: var(--font-heading);
+}
+
+.stat-value.pending {
+    color: var(--warning-yellow);
+}
+
+.action-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
+    gap: 1.2rem;
+    margin-bottom: 2rem;
+}
+
+.action-card {
+    background: var(--white);
+    border: 1px solid var(--border-color);
+    border-radius: var(--border-radius-lg);
+    padding: 1.2rem;
+    transition: transform 0.2s, box-shadow 0.2s;
+    display: flex;
+    gap: 1.2rem;
+    align-items: flex-start;
+}
+
+.action-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
+}
+
+.card-icon {
+    background: var(--secondary-gray);
+    width: 48px;
+    height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: var(--border-radius-md);
+    color: var(--primary-blue);
+    font-size: 1.2rem;
+    flex-shrink: 0;
+}
+
+.card-content {
+    flex: 1;
+}
+
+.card-content h3 {
+    margin: 0 0 0.5rem 0;
+    font-size: 1.25rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.card-content p {
+    color: var(--text-muted);
+    font-size: 0.95rem;
+    margin: 0;
+}
+
+.status-badge {
+    font-size: 0.75rem;
+    padding: 0.25rem 0.75rem;
+    border-radius: 20px;
+    background: var(--secondary-gray);
+    color: var(--text-muted);
+    font-family: var(--font-body);
+}
+
+.status-badge.read-only {
+    background: #d1d8e0;
+    color: #2d3436;
+}
+
+.status-badge.write-access {
+    background: rgba(197, 160, 89, 0.25);
+    color: #5d4037;
+}
+
+.status-badge.no-access {
+    background: rgba(220, 53, 69, 0.1);
+    color: var(--danger-red);
+}
+
+.status-badge.available {
+    background: rgba(40, 167, 69, 0.1);
+    color: var(--success-green);
+}
+
+a.action-card {
+    text-decoration: none;
+    color: inherit;
+}

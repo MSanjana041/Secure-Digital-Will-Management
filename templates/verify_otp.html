@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Verify OTP - LegacyVault</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/variables.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/auth.css') }}">
+</head>
+
+<body>
+    <div class="auth-container">
+        <!-- Left Panel -->
+        <div class="auth-left">
+            <div class="brand-header">
+                <h1>LegacyVault<br><span>Secure Digital Will Management</span></h1>
+            </div>
+
+            <div class="hero-text">
+                <h2>Multi-Factor<br><span style="color: var(--primary-gold);">Authentication</span></h2>
+                <p style="margin-top: 1.5rem; opacity: 0.9;">Please verify your identity to continue.</p>
+
+                <ul class="feature-list">
+                    <li>Time-based OTP Verification</li>
+                    <li>Secure Session Handling</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Right Panel -->
+        <div class="auth-right">
+            <div class="auth-box">
+                <h2>Verify Identity</h2>
+                <p class="auth-subtitle">Enter the OTP sent to your registered contact</p>
+
+                <form action="" method="POST">
+                    <div class="form-group">
+                        <label>One-Time Password (OTP)</label>
+                        <input type="text" name="otp" class="form-control" placeholder="Enter 6-digit OTP" required
+                            style="text-align: center; letter-spacing: 5px; font-size: 1.2rem;">
+                    </div>
+
+                    <button type="submit" class="btn btn-primary btn-block">Verify & Continue &rarr;</button>
+                </form>
+
+                <div class="auth-footer">
+                    <a href="/login">Back to Login</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

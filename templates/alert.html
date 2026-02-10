@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ title if title else 'Alert' }} - LegacyVault</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/variables.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/auth.css') }}">
+    <style>
+        .alert-container {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: var(--secondary-gray);
+            padding: 2rem;
+            box-sizing: border-box;
+        }
+
+        .alert-box {
+            background: white;
+            padding: 2.5rem;
+            border-radius: var(--border-radius-lg);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+            text-align: center;
+            max-width: 400px;
+            width: 100%;
+        }
+
+        .alert-box.error {
+            border-top: 5px solid var(--danger-red);
+        }
+
+        .alert-box.success {
+            border-top: 5px solid var(--success-green);
+        }
+
+        .alert-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            display: block;
+        }
+
+        .alert-title {
+            font-family: var(--font-heading);
+            font-size: 1.5rem;
+            color: var(--primary-blue);
+            margin-bottom: 0.5rem;
+        }
+
+        .alert-message {
+            color: var(--text-muted);
+            margin-bottom: 2rem;
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+
+        .btn-retry {
+            background-color: var(--primary-blue);
+            color: white !important;
+            padding: 0.8rem 2rem;
+            border-radius: var(--border-radius-sm);
+            font-weight: 600;
+            display: inline-block;
+            transition: all 0.2s;
+            text-decoration: none;
+        }
+
+        .btn-retry:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(26, 43, 75, 0.2);
+        }
+    </style>
+</head>
+
+<body>
+    <div class="alert-container">
+        <div class="alert-box {{ type }}">
+            <span class="alert-icon">
+                {% if type == 'error' %}⚠️{% else %}✅{% endif %}
+            </span>
+            <h2 class="alert-title">{{ title }}</h2>
+            <p class="alert-message">{{ message }}</p>
+            <a href="{{ back_url if back_url else 'javascript:history.back()' }}" class="btn-retry">
+                {{ back_label if back_label else 'Go Back' }}
+            </a>
+        </div>
+    </div>
+</body>
+
+</html>
